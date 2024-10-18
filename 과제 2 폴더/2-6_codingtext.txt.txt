@@ -1,0 +1,30 @@
+#include <string>
+#include <vector>
+#include <iostream>
+
+#include <sstream>
+#include <stack>
+
+using namespace std;
+
+int solution(string s) {
+    int answer = 0;
+    
+    istringstream iss(s);
+    string buffer;
+    stack<string> stk;
+
+    while (getline(iss, buffer, ' ')) {
+        if (buffer != "Z")
+            stk.push(buffer);
+        else
+            stk.pop();
+    }
+
+    while(!stk.empty()) {
+        answer += stoi(stk.top());
+        stk.pop();
+    }
+    
+    return answer;
+}
